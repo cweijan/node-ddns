@@ -11,6 +11,6 @@ export default defineConfig({
     }
   },
   build:{
-    outDir:path.join(__dirname,'../reclock/dist')
+    outDir:path.join(__dirname,'../dist')
   }
 })

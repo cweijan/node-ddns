@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { getCofnig,requestDispath,startCron } = require('./core');
 const app = express()
+const open = require('open');
 
 const configPath = __dirname + "/config.json";
 const port = 7231;
@@ -26,5 +27,7 @@ app.use(cors()).use(bodyParser.urlencoded({ extended: true }))
     })
     .listen(port, () => {
         startCron();
-        console.log(`启动DDNS程序成功! 端口为: ${port}!`);
+        const target = `http://127.0.0.1:${port}`;
+        console.log(`启动DDNS程序成功! 访问地址为: ${target}!`);
+        open(target)
     });
