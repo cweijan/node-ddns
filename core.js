@@ -31,7 +31,7 @@ function getCofnig() {
 }
 
 async function requestDispath() {
-    return dispathDDNS({ ...await getCofnig(), ip: '127.0.0.1' })
+    return dispathDDNS({ ...await getCofnig(), ip: await getIP()})
 }
 
 function startCron() {

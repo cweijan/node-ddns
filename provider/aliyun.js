@@ -84,7 +84,7 @@ class Core {
                     let { RR, Value, RecordId } = oldRecord;
                     if (TargetValue == Value) {
                         resolve({
-                            Status: true,
+                            success: false,
                             Message: "Target value equle current value"
                         });
                         return;
