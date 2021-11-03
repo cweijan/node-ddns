@@ -4,7 +4,7 @@ const express = require('express')
 const fs = require('fs')
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const {dispathDDNS} = require('./dispatch');
+const { getCofnig,requestDispath,startCron } = require('./core');
 const app = express()
 
 const configPath = __dirname + "/config.json";
@@ -20,31 +20,11 @@ app.use(cors()).use(bodyParser.urlencoded({ extended: true }))
         res.json(await getCofnig())
     })
     .get("/startDDNS", async (req, res) => {
-        const result=await dispathDDNS(await getCofnig())
+        const result = await requestDispath()
         console.log(result)
         res.json({})
     })
     .listen(port, () => {
-        console.log(`Node ddns client start success! port is ${port}!`);
+        startCron();
+        console.log(`启动DDNS程序成功! 端口为: ${port}!`);
     });
-
-
-function getCofnig() {
-    const defaultSetting = {
-        provider:"aliyun",
-        type: "A"
-    }
-    if (fs.existsSync(configPath)) {
-        const config = fs.readFileSync(configPath, 'utf-8')
-        try {
-            return JSON.parse(config)
-        } catch (error) {
-            return defaultSetting;
-        }
-    }
-    return defaultSetting;
-}
-
-function requestSign(authorization) {
-
-}

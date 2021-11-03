@@ -3,7 +3,6 @@ const PopCore = require('@alicloud/pop-core');
 /**
  * 文档参考地址: https://next.api.aliyun.com/document/Alidns/2015-01-09/overview
  */
-
 class Core {
     constructor(accessKeyId, accessKeySecret) {
         this.client = new PopCore({
