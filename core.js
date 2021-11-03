@@ -31,8 +31,8 @@ function getCofnig() {
 }
 
 async function requestDispath() {
-    const curDate = format('yyyy-MM-dd', new Date());
-    console.log(`开始进行DDNS请求.`)
+    const curDate = format('yyyy-MM-dd HH:mm:ss', new Date());
+    console.log(`开始进行DDNS请求, 日期为${curDate}.`)
     return dispathDDNS({ ...await getCofnig(), ip: await getIP()})
 }
 
