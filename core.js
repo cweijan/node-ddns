@@ -2,7 +2,7 @@ const fs = require('fs')
 const axios = require('axios').default
 const { dispathDDNS } = require('./dispatch');
 const configPath = __dirname + "/config.json";
-
+const format = require('date-format');
 
 function getIP() {
     return axios
@@ -31,6 +31,8 @@ function getCofnig() {
 }
 
 async function requestDispath() {
+    const curDate = format('yyyy-MM-dd', new Date());
+    console.log(`开始进行DDNS请求.`)
     return dispathDDNS({ ...await getCofnig(), ip: await getIP()})
 }
 
