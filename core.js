@@ -39,7 +39,7 @@ async function requestDispath() {
 function startCron() {
     setInterval(() => {
         requestDispath();
-    }, 12 * 60 * 60 * 1000);
+    }, 15 * 60 * 1000);
 }
 
 
