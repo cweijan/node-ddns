@@ -33,12 +33,13 @@ function getCofnig() {
 async function requestDispath() {
     const curDate = format('yyyy-MM-dd HH:mm:ss', new Date());
     console.log(`开始进行DDNS请求, 日期为${curDate}.`)
-    return dispathDDNS({ ...await getCofnig(), ip: await getIP()})
+    return dispathDDNS({ ...await getCofnig(), ip: await getIP() })
 }
 
 function startCron() {
-    setInterval(() => {
-        requestDispath();
+    setInterval(async () => {
+        const result = await requestDispath();
+        console.log(`ddns结果为:${JSON.stringify(result)}`)
     }, 15 * 60 * 1000);
 }
 
