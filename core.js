@@ -40,7 +40,7 @@ function startCron() {
     setInterval(async () => {
         const result = await requestDispath();
         console.log(`ddns结果为:${JSON.stringify(result)}`)
-    }, 15 * 60 * 1000);
+    }, 5 * 60 * 1000);
 }
 
 
