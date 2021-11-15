@@ -37,6 +37,7 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
         .listen(port, () => {
             startCron();
             console.log(`启动DDNS程序成功! 访问地址为: ${target}!`);
+            fs.writeFileSync(__dirname+"/ddns.pid",process.pid)
             open(target)
         });
 
