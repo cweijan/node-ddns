@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "node dev.js",
+    "build": "webpack --progress --mode=production",
+    "build-web": "cd ddns-web && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "weijan",
@@ -15,6 +18,8 @@
     "date-format": "^3.0.0",
     "express": "^4.17.1",
     "open": "^8.4.0",
-    "tcp-port-used": "^1.0.2"
+    "tcp-port-used": "^1.0.2",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1"
   }
 }

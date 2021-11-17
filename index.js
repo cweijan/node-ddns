@@ -8,7 +8,9 @@ const { getCofnig, requestDispath, startCron } = require('./core');
 const app = express()
 const tcpPortUsed = require('tcp-port-used');
 const open = require('open');
+const { sep } = require("path");
 
+const isProd = __filename.split(sep).pop() == 'app.js';
 const port = 7231;
 const target = `http://127.0.0.1:${port}`;
 
@@ -21,7 +23,7 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
     const configPath = __dirname + "/config.json";
     app.use(cors()).use(bodyParser.urlencoded({ extended: true }))
         .use(bodyParser.json())
-        .use(express.static(__dirname + '/dist'))
+        .use(express.static(isProd ? __dirname : __dirname + '/dist'))
         .get("/config", async (req, res) => {
             res.json(await getCofnig());
         })
@@ -37,7 +39,7 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
         .listen(port, () => {
             startCron();
             console.log(`启动DDNS程序成功! 访问地址为: ${target}!`);
-            fs.writeFileSync(__dirname+"/ddns.pid",process.pid)
+            fs.writeFileSync(__dirname + "/ddns.pid", process.pid)
             open(target)
         });
 
