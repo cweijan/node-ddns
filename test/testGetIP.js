@@ -1,7 +1,8 @@
 const { getIP } = require("../core");
+const { log } = require('./util');
 
 async function testGetIP(){
     const ip=await getIP()
-    console.log(ip)
+    log(ip)
 }
 testGetIP()

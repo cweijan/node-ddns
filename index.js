@@ -10,6 +10,7 @@ const tcpPortUsed = require('tcp-port-used');
 const open = require('open');
 const { sep } = require("path");
 const { platform } = require('os');
+const { log } = require('./util');
 
 const isProd = __filename.split(sep).pop() == 'app.js';
 const port = 7231;
@@ -17,7 +18,7 @@ const target = `http://127.0.0.1:${port}`;
 
 tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
     if (inUse) {
-        console.log('DDNS程序已经启动..')
+        log('DDNS程序已经启动..')
         open(target)
         return;
     }
@@ -34,12 +35,12 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
         })
         .get("/startDDNS", async (req, res) => {
             const result = await requestDispath()
-            console.log(result)
+            log(result)
             res.json({})
         })
         .listen(port, () => {
             startCron();
-            console.log(`启动DDNS程序成功! 访问地址为: ${target}!`);
+            log(`启动DDNS程序成功! 访问地址为: ${target}!`);
             fs.writeFileSync(__dirname + "/ddns.pid", process.pid)
             if (platform() == "win32") {
                 open(target)

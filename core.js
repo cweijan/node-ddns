@@ -3,6 +3,7 @@ const axios = require('axios').default
 const { dispathDDNS } = require('./dispatch');
 const configPath = __dirname + "/config.json";
 const format = require('date-format');
+const { log } = require('./util');
 
 function getIP() {
     return axios
@@ -32,14 +33,14 @@ function getCofnig() {
 
 async function requestDispath() {
     const curDate = format('yyyy-MM-dd HH:mm:ss', new Date());
-    console.log(`开始进行DDNS请求, 日期为${curDate}.`)
+    log(`开始进行DDNS请求, 日期为${curDate}.`)
     return dispathDDNS({ ...await getCofnig(), ip: await getIP() })
 }
 
 function startCron() {
     setInterval(async () => {
         const result = await requestDispath();
-        console.log(`ddns结果为:${JSON.stringify(result)}`)
+        log(`ddns结果为:${JSON.stringify(result)}`)
     }, 5 * 60 * 1000);
 }
 

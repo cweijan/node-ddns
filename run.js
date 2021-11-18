@@ -1,4 +1,5 @@
 const { requestDispath } = require('./core');
+const { log } = require('./util');
 requestDispath().then(res => {
-    console.log(res)
+    log(res)
 })
