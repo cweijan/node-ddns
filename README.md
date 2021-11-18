@@ -1,5 +1,7 @@
 # Node-DDNS
 
+npm run build
+
 Docker
 
 1. docker build -t cweijan/node-ddns .
