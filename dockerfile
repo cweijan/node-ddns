@@ -1,4 +1,4 @@
-FROM node.js/12.0
+FROM  node:12
 LABEL MAINTAINER=WeiJan
 
 RUN mkdir -p /home/node-ddns
