@@ -11,6 +11,7 @@ const open = require('open');
 const { sep } = require("path");
 const { platform } = require('os');
 const { log } = require('./util');
+const { exec } = require('child_process');
 
 const isProd = __filename.split(sep).pop() == 'app.js';
 const port = 7231;
@@ -26,6 +27,14 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
     app.use(cors()).use(bodyParser.urlencoded({ extended: true }))
         .use(bodyParser.json())
         .use(express.static(isProd ? __dirname : __dirname + '/dist'))
+        .get("/n2n",async (req,res)=>{
+            exec(`echo "" | nc -u localhost 5645|awk '{ if ($3 ~ /10/) printf "%-20s %s\\n", $9, $3 }'`,(err,stdout)=>{
+                res.send(stdout)
+            })
+            setTimeout(() => {
+                exec("pkill nc.exe")
+            }, 5);
+        })
         .get("/config", async (req, res) => {
             res.json(await getCofnig());
         })
@@ -48,4 +57,3 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
         });
 
 });
-
