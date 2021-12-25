@@ -1,6 +1,8 @@
 version: "3.7"
 services:
-  app:
+  ddns:
     build: ./
+    image: cweijan/ddns
+    container_name: ddns
     ports:
-      - 7232:7231
+      - 7231:7231

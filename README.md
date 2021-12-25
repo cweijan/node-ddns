@@ -1,8 +1,8 @@
 # Node-DDNS
 
-npm run build
+开发步骤
 
-Docker
-
-1. docker build -t cweijan/node-ddns .
-2. docker run -itd -p 7231:7231/tcp --restart=always cweijan/node-ddns
+1. 安装依赖: npm i
+2. 进行编译: npm run build
+3. 启动容器服务: docker-compose up
+4. 重新构建并以守护模式启动: npm run build && docker-compose up -d --build
