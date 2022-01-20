@@ -38,10 +38,11 @@ async function requestDispath() {
 }
 
 function startCron() {
+    requestDispath();
     setInterval(async () => {
         const result = await requestDispath();
         log(`ddns结果为:${JSON.stringify(result)}`)
-    }, 5 * 60 * 1000);
+    }, 1 * 30 * 1000);
 }
 
 
