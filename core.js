@@ -15,7 +15,7 @@ function getIP() {
         .catch(err => null)
 }
 
-function getCofnig() {
+function getConfig() {
     const defaultSetting = {
         provider: "aliyun",
         type: "A"
@@ -34,7 +34,7 @@ function getCofnig() {
 async function requestDispath() {
     const curDate = format('yyyy-MM-dd hh:mm:ss', new Date());
     log(`开始进行DDNS请求, 日期为${curDate}.`)
-    return dispathDDNS({ ...await getCofnig(), ip: await getIP() })
+    return dispathDDNS({ ...await getConfig(), ip: await getIP() })
 }
 
 function startCron() {
@@ -46,4 +46,4 @@ function startCron() {
 }
 
 
-module.exports = { getCofnig, requestDispath, startCron, getIP }
+module.exports = { getCofnig: getConfig, requestDispath, startCron, getIP }
