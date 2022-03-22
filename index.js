@@ -57,3 +57,11 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
         });
 
 });
+
+process.on('unhandledRejection', (error) => {
+    console.log('unhandledRejection', error)
+});
+
+process.on('uncaughtException', (error) => {
+    console.log('uncaughtException', error)
+});

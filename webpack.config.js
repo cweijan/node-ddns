@@ -7,7 +7,7 @@ module.exports = [
         target: "node",
         entry: ['./index.js'],
         output: {
-            path: path.resolve(__dirname,'dist'),
+            path: path.resolve(__dirname, 'dist'),
             filename: 'app.js',
         },
         resolve: {
@@ -20,7 +20,9 @@ module.exports = [
             whistle: 'commonjs whistle',
         },
         optimization: {
-            minimize: isProd, minimizer: [new TerserPlugin({
+            // minimize: isProd,
+            minimize: false,
+            minimizer: [new TerserPlugin({
                 terserOptions: {
                     format: {
                         comments: false,
