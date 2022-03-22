@@ -9,7 +9,6 @@ const app = express()
 const tcpPortUsed = require('tcp-port-used');
 const open = require('open');
 const { sep } = require("path");
-const { platform } = require('os');
 const { log } = require('./util');
 const { exec } = require('child_process');
 
@@ -51,9 +50,9 @@ tcpPortUsed.check(port, '127.0.0.1').then((inUse) => {
             startCron();
             log(`启动DDNS程序成功! 访问地址为: ${target}!`);
             fs.writeFileSync(__dirname + "/ddns.pid", process.pid+"")
-            if (platform() == "win32") {
-                open(target)
-            }
+            // if (platform() == "win32") {
+            //     open(target)
+            // }
         });
 
 });

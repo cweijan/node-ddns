@@ -7,6 +7,8 @@
 3. 启动容器服务: docker-compose up
 4. 重新构建并以守护模式启动: npm run build && docker-compose up -d --build
 
+web端口为7231
+
 创建Windows服务
 
 - 创建服务: scx 0ddns "D:\dev\developKit\nodejs\node.exe D:\git\node-ddns\dist\app.js"
